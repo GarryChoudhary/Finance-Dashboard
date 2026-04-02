@@ -61,9 +61,59 @@
                 </div>
                 <div class="dashboard-data">
                     <div class="transactions">
-                        transaction
+                        <div class="transactions-title">
+                            <h3>Recent Activity</h3>
+                            <div class="controls">
+                                <input type="text" id="search" placeholder="Search...">
+
+                                <select id="filterType">
+                                    <option value="all">All</option>
+                                    <option value="income">Income</option>
+                                    <option value="expense">Expense</option>
+                                </select>
+
+                                <select id="sortAmount">
+                                    <option value="default">Sort</option>
+                                    <option value="low">Low to High</option>
+                                    <option value="high">High to Low</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="transactions-details">
+                            <div class="transaction-tab">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Amount</th>
+                                            <th>Category</th>
+                                            <th>Type</th>
+                                        </tr>
+                                        <tr>
+                                            <th>26-02-2026</th>
+                                            <th>$2000</th>
+                                            <th>income</th>
+                                            <th>income</th>
+                                        </tr>
+                                        <tr>
+                                            <th>01-03-2026</th>
+                                            <th>1000</th>
+                                            <th>expence</th>
+                                            <th>withdraw</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="transactionList"></tbody>
+                                </table>
+
+                            </div>
+                        </div>
                     </div>
-                    div.
+                    <div class="add-items">
+                        <h4>lists</h4>
+                    </div>
+                    <div class="insides">
+                        <h4>insides</h4>
+                    </div>
                 </div>
 
             </div>
