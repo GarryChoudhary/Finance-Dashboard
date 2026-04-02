@@ -203,12 +203,6 @@ body {
     height: 50%;
     border-radius: 10px;
 }
-.controls{
-    /* display: flex; */
-    /* flex-direction: ; */
-    /* justify-content: space-between; */
-
-}
 th, td {
   padding: 0.5rem 3rem;
   border-bottom: 1px solid #ddd;
