@@ -229,6 +229,26 @@ function renderPieChart() {
 }
 
 
+let role = "admin";
+
+document.getElementById("roleSelect").addEventListener("change", (e) => {
+    role = e.target.value;
+    updateRoleUI();
+});
+
+function updateRoleUI() {
+    const btn = document.getElementById("submit");
+
+    if (role === "viewer") {
+        btn.disabled = true;
+        btn.style.opacity = "0.5";
+    } else {
+        btn.disabled = false;
+        btn.style.opacity = "1";
+    }
+}
+
+
 
 
 
