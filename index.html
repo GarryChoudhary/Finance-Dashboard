@@ -7,6 +7,7 @@
     <title>Finance Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -39,7 +40,12 @@
                     <div class="icons">
                         <a href="#"><i class="fa-regular fa-comment-dots"></i>Feedback</a>
                         <span>Welcome! User</span>
-
+                        <div class="role">
+                            <select id="roleSelect">
+                                <option value="viewer">Viewer</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
 
@@ -89,22 +95,20 @@
                                             <th>catagory</th>
                                             <th>Type</th>
                                         </tr>
-                                        
-                                        
                                     </thead>
-                                    <tbody ></tbody>
+                                    <tbody></tbody>
                                 </table>
                             </div>
-                            
-                            
-                            
-                           
+
+
+
+
                         </div>
                     </div>
                     <div class="add-items">
                         <h3>Add Your Money Flow</h3>
                         <div class="form">
-                            <form action="#">
+                            <form onsubmit="return false;" action="#">
                                 <div class="add-amount">
                                     <label for="amount">Amount:</label>
                                     <input type="number" name="amount" id="add-amount">
@@ -126,17 +130,25 @@
                                     <input type="date" name="date" id="add-date">
                                 </div>
                             </form>
-                            <button id="submit" onclick="addTransactions()" type="submit">Add</button>
+                            <button id="submit" onclick="addTransactions(event)" type="button">Add</button>
                         </div>
                     </div>
-                    <!-- <div class="insides">
-                        <h4>insides</h4>
-                    </div> -->
                 </div>
 
+
+
+                <div class="mychart">
+                    <canvas id="myChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <h3>Spending Breakdown</h3>
+                    <canvas id="pieChart"></canvas>
+                </div>
+
+
+
             </div>
-
-
         </div>
     </div>
     <script src="script.js"></script>

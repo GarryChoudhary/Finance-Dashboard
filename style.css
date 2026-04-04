@@ -2,11 +2,16 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    color: rgb(203, 202, 202);
 }
+
 
 body {
     font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
+    background-color: #0b0f1a;
+    color: white;
+    height: 100%;
 
 }
 
@@ -14,14 +19,16 @@ body {
     display: grid;
     grid-template-columns: 1fr 4.5fr;
     height: 100vh;
+    /* overflow-y: scroll; */
 }
 
 .sidebar {
     /* border: 1px solid black; */
     /* position: sticky; */
     background-color: rgb(242, 242, 242);
-     box-shadow: 2px 2px 10px gray;
+     /* box-shadow: 2px 2px 10px gray; */
      border-radius: 10px;
+     background-color: #121826;
 
 }
 
@@ -62,7 +69,7 @@ body {
     padding: 0.5rem 1rem;
     border-radius: 10px;
     text-decoration: none;
-    color: black;
+    color: white;
     /* margin: 5px; */
 }
 
@@ -75,8 +82,9 @@ body {
 }
 
 .header {
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #222;
     height: 10vh;
+    /* background-color: #121826; */
 }
 
 .header-content {
@@ -94,7 +102,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
+    background-color: transparent;
 
 }
 
@@ -132,9 +140,17 @@ body {
 
 .icons a {
     text-decoration: none;
-    color: black;
+    /* color: black; */
 
 }
+.icons select{
+    background-color: transparent;
+    height: 2rem;
+    width: 5rem;
+    
+    border-radius: 15px;
+}
+
 
 .cards{
     /* border: 1px solid black; */
@@ -142,6 +158,7 @@ body {
     padding: 2rem;
     display: flex;
     gap: 2rem;
+
     /* justify-content: space-around; */
 
 }
@@ -150,26 +167,35 @@ body {
 .card {
   flex: 1;
   padding: 20px;
-  color: white;
+  /* color: rgb(195, 193, 193); */
   border-radius: 10px;
   justify-content: center;
   align-items: center;
 }
 
-.balance { background: #3b82f6; }
-.income { background: #22c55e; }
-.expense { background: #ef4444; }
+.balance {       background: linear-gradient(135deg, #1E1B4B, #27263b);
+ }
+.income {   background: linear-gradient(135deg, #0F172A, #172b26);
+ }
+.expense { background: #121826;   background: linear-gradient(36deg, #222933, #5e2020);
+ }
+ .main-dashboard{
+    overflow-y: scroll;
+ }
+
 
 .dashboard-data{
-    /* border: 1px solid black; */
+    /* border: 1px solid white; */
     border-radius: 10px;
     margin: 1rem;
     padding: 2rem;
     display: grid;
     gap: 1rem;
     grid-template-columns: 2fr 1fr;
-    background-color:whitesmoke ;
-    box-shadow: 2px 2px 10px gray;
+    /* background-color:whitesmoke ; */
+    /* box-shadow: 2px 2px 10px gray; */
+    /* background-color: #121826; */
+
 
 }
 .transactions{
@@ -177,15 +203,17 @@ body {
     border-radius: 10px;
     grid-row: 1/4;
     height: 52vh;
+         background-color: #131c2f;
+
 }
 .add-items{
     /* border: 1px solid black; */
-        border-radius: 10px;
-            box-shadow: 2px 2px 10px gray;
-
-
+    border-radius: 10px;
+    /* box-shadow: 2px 2px 10px gray; */
     grid-row: 1/3;
     height: 52vh;
+             background-color: #131c2f;
+
 
 }
 /* .insides{
@@ -208,12 +236,17 @@ body {
     margin: 1rem;
     height: 75%;
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
     scrollbar-width:none;
 }
 th, td {
   padding: 0.5rem 3rem;
   border-bottom: 1px solid #ddd;
+}
+th{
+    background-color: #121826;
+    border-radius: 0;
+    color: whitesmoke;
 }
 
 tr:nth-child(1){
@@ -230,8 +263,8 @@ th span{
 .controls input, #filterType, #sortAmount{
     border-radius: 5px;
     height: 2rem;
-    /* background-color: transparent; */
-    border: 0;
+    background-color: transparent;
+    border: 1px solid black;
 }
 .form{
     display: flex;
@@ -248,7 +281,7 @@ th span{
     padding: 0.5rem 0;
     /* border-bottom: 1px solid black; */
     border-radius: 10px;
-    background-color: rgb(230, 230, 230);
+    background-color: #121826;
         /* box-shadow: 2px 2px 10px gray; */
 
 }
@@ -265,7 +298,8 @@ th span{
     width: 80%;
     height: 3rem;
     border-radius: 5px;
-    border: 0.5px solid black;
+    border: 0.5px solid whitesmoke;
+    background-color: transparent;
 
 }
 .form button{
@@ -277,6 +311,10 @@ th span{
     color: white;
     margin-top: 1rem;
 }
+.form button:hover{ 
+    cursor: pointer;
+    background-color: rgb(0, 51, 255);
+}
 /* #transactionList tr:nth-child(1){
     position: fixed;
     width: 45%;
@@ -285,3 +323,45 @@ th span{
 #transactionList tr:nth-child(2){
     margin-top: 2rem;
 } */
+
+#myChart{
+    width: 90%;
+    max-width: 50vw;  
+    /* height: 250px; */
+    margin: 15px auto;
+    padding: 15px;
+    background: linear-gradient(135deg, #1E293B, #0F172A);
+    border-radius: 12px;
+    /* background-color: red; */
+    /* border: 1px solid white; */
+
+}
+/* .charts{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin-bottom: 2rem;
+} */
+.mychart{
+    background: linear-gradient(135deg, #1E293B, #0F172A);
+    margin: 3rem;
+    padding: 0;
+    border-radius: 12px;
+}
+
+.chart-container {
+    width: 90%;
+    max-width: 100vw;
+    height: 400px;
+    margin: 20px 3rem;
+    /* background-color: red; */
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    margin-bottom: 3rem;
+        background: linear-gradient(135deg, #1E293B, #0F172A);
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
