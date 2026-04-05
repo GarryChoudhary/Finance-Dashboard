@@ -39,6 +39,8 @@ function addTransactions(event) {
     updateSummary();
     renderChart();
     renderPieChart();
+    showCategoryData()
+    
 }
 
 function updateSummary() {
@@ -248,8 +250,72 @@ function updateRoleUI() {
     }
 }
 
+function getMaxCategory() {
+  const transactions = JSON.parse(localStorage.getItem("financeData")) || [];
+
+  const categoryData = {};
+
+  transactions.forEach(txn => {
+    if (txn.Type && txn.Type.trim().toLowerCase() === "expense") {
+      const category = txn.catagory || "Other";
+      const amount = Number(txn.Amount) || 0;
+
+      categoryData[category] = (categoryData[category] || 0) + amount;
+    }
+  });
+
+  console.log("Category Data:", categoryData);
+  for (let key in categoryData) {
+//   console.log(categoryData[key], ":", categoryData.categoryData[key] );
+}
+
+  let maxCategory = "";
+  let maxAmount = 0;
+
+  for (let category in categoryData) {
+    if (categoryData[category] > maxAmount) {
+      maxAmount = categoryData[category];
+      maxCategory = category;
+    }
+  }
+
+  return { maxCategory, maxAmount };
+}
+const result = getMaxCategory();
+console.log("RESULT:", result);
 
 
+
+
+function showCategoryData() {
+  const transactions = JSON.parse(localStorage.getItem("financeData")) || [];
+
+  const categoryData = {};
+
+  // Step 1: group expenses by category
+  transactions.forEach(txn => {
+    if (txn.Type && txn.Type.toLowerCase() === "expense") {
+      const category = txn.catagory;
+      const amount = Number(txn.Amount);
+
+      categoryData[category] = (categoryData[category] || 0) + amount;
+    }
+  });
+
+  // Step 2: display in UI
+  const container = document.getElementById("categoryList");
+  container.innerHTML = "";
+
+  for (let catagory in categoryData) {
+    const amount = categoryData[catagory];
+
+    const div = document.createElement("div");
+    div.innerText = `${catagory} : $${amount}`;
+
+    container.appendChild(div);
+  }
+}
+document.addEventListener("DOMContentLoaded", showCategoryData);
 
 
 window.onload = function () {
@@ -257,4 +323,7 @@ window.onload = function () {
     updateSummary();
     renderChart();
     renderPieChart();
+    updateRoleUI();
+    
+    
 };
