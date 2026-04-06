@@ -1,31 +1,37 @@
+
+let div = document.getElementById('dashboard-data');
+let div2 = document.getElementById('chart-insights');
+let div3 = document.getElementById('mychart');
+
 document.addEventListener("DOMContentLoaded", function () {
     let chartTab = document.getElementById('chartBtn');
     let insightsTab = document.getElementById('insightsBtn');
     let transactionTab = document.getElementById('transactionBtn');
+    let homeTab = document.getElementById('home');
 
     chartTab.addEventListener("click", function () {
-        console.log('this is chartbtn');
-        let div = document.getElementById('dashboard-data');
-        let div2 = document.getElementById('chart-insights')
+        div3.style.display = 'block';
         div.style.display = 'none';
         div2.style.display = 'none';
 
+
     });
     insightsTab.addEventListener("click", function () {
-        console.log('this is insightsbtn');
-        let div3 = document.getElementById('dashboard-data');
-        let div4 = document.getElementById('mychart')
+        div2.style.display = 'grid';
         div3.style.display = 'none';
-        div4.style.display = 'none';
+        div.style.display = 'none';
 
     });
     transactionTab.addEventListener("click", function () {
-        console.log('this is insightsbtn');
-        let div5 = document.getElementById('chart-insights');
-        let div6 = document.getElementById('mychart')
-        div5.style.display = 'none';
-        div6.style.display = 'none';
+        div.style.display = 'grid';
+        div2.style.display = 'none';
+        div3.style.display = 'none';
 
+    });
+    homeTab.addEventListener("click", function () {
+        div.style.display = 'grid';
+        div2.style.display = 'grid';
+        div3.style.display = 'block';
     });
 });
 
@@ -113,6 +119,8 @@ function displayTransactions(data = transactions) {
         table.appendChild(row);
     });
 }
+
+
 
 
 document.getElementById("search").addEventListener("input", e => {
@@ -213,6 +221,7 @@ function renderChart() {
         },
         options: {
             responsive: true,
+
         }
     });
 }
@@ -298,7 +307,6 @@ function getMaxCategory() {
 
     console.log("Category Data:", categoryData);
     for (let key in categoryData) {
-        //   console.log(categoryData[key], ":", categoryData.categoryData[key] );
     }
 
     let maxCategory = "";
@@ -324,7 +332,6 @@ function showCategoryData() {
 
     const categoryData = {};
 
-    // Step 1: group expenses by category
     transactions.forEach(txn => {
         if (txn.Type && txn.Type.toLowerCase() === "expense") {
             const category = txn.catagory;
@@ -334,7 +341,6 @@ function showCategoryData() {
         }
     });
 
-    // Step 2: display in UI
     const container = document.getElementById("categoryList");
     container.innerHTML = "";
 
