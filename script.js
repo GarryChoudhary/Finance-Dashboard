@@ -1,5 +1,37 @@
-    let transactions = JSON.parse(localStorage.getItem("financeData")) || [];
-    let myChart; 
+document.addEventListener("DOMContentLoaded", function () {
+    let chartTab = document.getElementById('chartBtn');
+    let insightsTab = document.getElementById('insightsBtn');
+    let transactionTab = document.getElementById('transactionBtn');
+
+    chartTab.addEventListener("click", function () {
+        console.log('this is chartbtn');
+        let div = document.getElementById('dashboard-data');
+        let div2 = document.getElementById('chart-insights')
+        div.style.display = 'none';
+        div2.style.display = 'none';
+
+    });
+    insightsTab.addEventListener("click", function () {
+        console.log('this is insightsbtn');
+        let div3 = document.getElementById('dashboard-data');
+        let div4 = document.getElementById('mychart')
+        div3.style.display = 'none';
+        div4.style.display = 'none';
+
+    });
+    transactionTab.addEventListener("click", function () {
+        console.log('this is insightsbtn');
+        let div5 = document.getElementById('chart-insights');
+        let div6 = document.getElementById('mychart')
+        div5.style.display = 'none';
+        div6.style.display = 'none';
+
+    });
+});
+
+
+let transactions = JSON.parse(localStorage.getItem("financeData")) || [];
+let myChart;
 
 
 function addTransactions(event) {
@@ -40,7 +72,7 @@ function addTransactions(event) {
     renderChart();
     renderPieChart();
     showCategoryData()
-    
+
 }
 
 function updateSummary() {
@@ -84,46 +116,46 @@ function displayTransactions(data = transactions) {
 
 
 document.getElementById("search").addEventListener("input", e => {
-  const value = e.target.value.toLowerCase();
+    const value = e.target.value.toLowerCase();
 
-  const filtered = transactions.filter(t =>
-    t.catagory && t.catagory.toLowerCase().includes(value)
-  );
+    const filtered = transactions.filter(t =>
+        t.catagory && t.catagory.toLowerCase().includes(value)
+    );
 
-  displayTransactions(filtered);
+    displayTransactions(filtered);
 });
 
 
 
 document.getElementById("filterType").addEventListener("change", e => {
-  const value = e.target.value;
+    const value = e.target.value;
 
-  let filtered;
+    let filtered;
 
-  if (value === "all") {
-    filtered = transactions;
-  } else {
-    filtered = transactions.filter(t => 
-      t.Type.toLowerCase() === value.toLowerCase()
-    );
-  }
+    if (value === "all") {
+        filtered = transactions;
+    } else {
+        filtered = transactions.filter(t =>
+            t.Type.toLowerCase() === value.toLowerCase()
+        );
+    }
 
-  displayTransactions(filtered);
+    displayTransactions(filtered);
 });
 
 
 
 
 document.getElementById("sortAmount").addEventListener("change", e => {
-  let sorted = [...transactions];
+    let sorted = [...transactions];
 
-  if (e.target.value === "low") {
-    sorted.sort((a, b) => a.Amount - b.Amount);
-  } else if (e.target.value === "high") {
-    sorted.sort((a, b) => b.Amount - a.Amount);
-  }
+    if (e.target.value === "low") {
+        sorted.sort((a, b) => a.Amount - b.Amount);
+    } else if (e.target.value === "high") {
+        sorted.sort((a, b) => b.Amount - a.Amount);
+    }
 
-  displayTransactions(sorted);
+    displayTransactions(sorted);
 });
 
 
@@ -155,9 +187,9 @@ function renderChart() {
     });
 
     if (myChart) {
-    myChart.destroy();
-    myChart = null;
-}
+        myChart.destroy();
+        myChart = null;
+    }
 
 
     myChart = new Chart(ctx, {
@@ -251,35 +283,35 @@ function updateRoleUI() {
 }
 
 function getMaxCategory() {
-  const transactions = JSON.parse(localStorage.getItem("financeData")) || [];
+    const transactions = JSON.parse(localStorage.getItem("financeData")) || [];
 
-  const categoryData = {};
+    const categoryData = {};
 
-  transactions.forEach(txn => {
-    if (txn.Type && txn.Type.trim().toLowerCase() === "expense") {
-      const category = txn.catagory || "Other";
-      const amount = Number(txn.Amount) || 0;
+    transactions.forEach(txn => {
+        if (txn.Type && txn.Type.trim().toLowerCase() === "expense") {
+            const category = txn.catagory || "Other";
+            const amount = Number(txn.Amount) || 0;
 
-      categoryData[category] = (categoryData[category] || 0) + amount;
+            categoryData[category] = (categoryData[category] || 0) + amount;
+        }
+    });
+
+    console.log("Category Data:", categoryData);
+    for (let key in categoryData) {
+        //   console.log(categoryData[key], ":", categoryData.categoryData[key] );
     }
-  });
 
-  console.log("Category Data:", categoryData);
-  for (let key in categoryData) {
-//   console.log(categoryData[key], ":", categoryData.categoryData[key] );
-}
+    let maxCategory = "";
+    let maxAmount = 0;
 
-  let maxCategory = "";
-  let maxAmount = 0;
-
-  for (let category in categoryData) {
-    if (categoryData[category] > maxAmount) {
-      maxAmount = categoryData[category];
-      maxCategory = category;
+    for (let category in categoryData) {
+        if (categoryData[category] > maxAmount) {
+            maxAmount = categoryData[category];
+            maxCategory = category;
+        }
     }
-  }
 
-  return { maxCategory, maxAmount };
+    return { maxCategory, maxAmount };
 }
 const result = getMaxCategory();
 console.log("RESULT:", result);
@@ -288,32 +320,32 @@ console.log("RESULT:", result);
 
 
 function showCategoryData() {
-  const transactions = JSON.parse(localStorage.getItem("financeData")) || [];
+    const transactions = JSON.parse(localStorage.getItem("financeData")) || [];
 
-  const categoryData = {};
+    const categoryData = {};
 
-  // Step 1: group expenses by category
-  transactions.forEach(txn => {
-    if (txn.Type && txn.Type.toLowerCase() === "expense") {
-      const category = txn.catagory;
-      const amount = Number(txn.Amount);
+    // Step 1: group expenses by category
+    transactions.forEach(txn => {
+        if (txn.Type && txn.Type.toLowerCase() === "expense") {
+            const category = txn.catagory;
+            const amount = Number(txn.Amount);
 
-      categoryData[category] = (categoryData[category] || 0) + amount;
+            categoryData[category] = (categoryData[category] || 0) + amount;
+        }
+    });
+
+    // Step 2: display in UI
+    const container = document.getElementById("categoryList");
+    container.innerHTML = "";
+
+    for (let catagory in categoryData) {
+        const amount = categoryData[catagory];
+
+        const div = document.createElement("div");
+        div.innerText = `${catagory} : $${amount}`;
+
+        container.appendChild(div);
     }
-  });
-
-  // Step 2: display in UI
-  const container = document.getElementById("categoryList");
-  container.innerHTML = "";
-
-  for (let catagory in categoryData) {
-    const amount = categoryData[catagory];
-
-    const div = document.createElement("div");
-    div.innerText = `${catagory} : $${amount}`;
-
-    container.appendChild(div);
-  }
 }
 document.addEventListener("DOMContentLoaded", showCategoryData);
 
@@ -324,6 +356,6 @@ window.onload = function () {
     renderChart();
     renderPieChart();
     updateRoleUI();
-    
-    
+
+
 };
